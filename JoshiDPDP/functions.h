@@ -1,6 +1,5 @@
 #pragma once
 
-
 #ifdef DPDPLIBRARY_EXPORTS
 #define FUNCTIONSDLL_API __declspec(dllexport) 
 #else
