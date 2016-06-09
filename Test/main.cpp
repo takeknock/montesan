@@ -9,8 +9,9 @@ int main()
     const double volatility = 0.2;
     const double interestRate = 0.1;
     const size_t numberOfPath = 10;
-    double price = simpleMonteCarlo1(maturity, strike, spot, volatility, interestRate, numberOfPath);
+    const double price = simpleMonteCarlo1(maturity, strike, spot, volatility, interestRate, numberOfPath);
     std::cout << price << std::endl;
+
 
 
     double a;
