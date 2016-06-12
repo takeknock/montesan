@@ -2,6 +2,7 @@
 #include "../JoshiDPDP/functions.h"
 #include "../JoshiDPDP/PayoffCall.h"
 #include "../JoshiDPDP/PayoffPut.h"
+#include "../JoshiDPDP/PayoffDoubleDigital.h"
 //#include "../JoshiDPDP/Payoff.h"
 
 int main()
@@ -14,10 +15,18 @@ int main()
     const size_t numberOfPath = 10;
     const mc::PayoffCall callPayoff(strike);
     const mc::PayoffPut putPayoff(strike);
-    const double callPrice = mc::simpleMonteCarlo(callPayoff, maturity, spot, volatility, interestRate, numberOfPath);
-    const double putPrice = mc::simpleMonteCarlo(putPayoff, maturity, spot, volatility, interestRate, numberOfPath);
+    const double callPrice = mc::simpleMonteCarlo(
+        callPayoff, maturity, spot, volatility, interestRate, numberOfPath);
+    const double putPrice = mc::simpleMonteCarlo(
+        putPayoff, maturity, spot, volatility, interestRate, numberOfPath);
+
+    const mc::PayoffDoubleDigital doubleDigitalPayoff(-1.0, 1.0);
+    const double doubleDigitalOptionPrice = mc::simpleMonteCarlo(
+        doubleDigitalPayoff, maturity, spot, volatility, interestRate, numberOfPath);
+
     std::cout << "the price of call option: " << callPrice << std::endl;
     std::cout << "the price of put option: " << putPrice << std::endl;
+    std::cout << "the price of double digital option: " << doubleDigitalOptionPrice << std::endl;
 
 
     double a;
