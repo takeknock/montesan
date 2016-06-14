@@ -1,9 +1,20 @@
 #include <iostream>
+
 #include "../JoshiDPDP/functions.h"
 #include "../JoshiDPDP/PayoffCall.h"
 #include "../JoshiDPDP/PayoffPut.h"
 #include "../JoshiDPDP/PayoffDoubleDigital.h"
 //#include "../JoshiDPDP/Payoff.h"
+
+
+#include <cppunit/BriefTestProgressListener.h>
+#include <cppunit/CompilerOutputter.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/TestResult.h>
+#include <cppunit/TestResultCollector.h>
+#include <cppunit/TestRunner.h>
+
+#include "functionsTest.h"
 
 int main()
 {
@@ -28,6 +39,25 @@ int main()
     std::cout << "the price of put option: " << putPrice << std::endl;
     std::cout << "the price of double digital option: " << doubleDigitalOptionPrice << std::endl;
 
+    // イベント・マネージャとテスト・コントローラを生成する
+    CPPUNIT_NS::TestResult controller;
+
+    // テスト結果収集リスナをコントローラにアタッチする
+    CPPUNIT_NS::TestResultCollector result;
+    controller.addListener(&result);
+
+    // 「.」で進行状況を出力するリスナをアタッチする
+    CPPUNIT_NS::BriefTestProgressListener progress;
+    controller.addListener(&progress);
+
+    // テスト・ランナーにテスト群を与え、テストする
+    CPPUNIT_NS::TestRunner runner;
+    runner.addTest(CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest());
+    runner.run(controller);
+
+    // テスト結果を標準出力に吐き出す
+    CPPUNIT_NS::CompilerOutputter outputter(&result, CPPUNIT_NS::stdCOut());
+    outputter.write();
 
     double a;
     std::cin >> a;
