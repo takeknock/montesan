@@ -26,14 +26,17 @@ int main()
     const size_t numberOfPath = 10;
     const mc::PayoffCall callPayoff(strike);
     const mc::PayoffPut putPayoff(strike);
+    const mc::VanillaOption callOption(callPayoff, maturity);
+    const mc::VanillaOption putOption(putPayoff, maturity);
     const double callPrice = mc::simpleMonteCarlo(
-        callPayoff, maturity, spot, volatility, interestRate, numberOfPath);
+        callOption, spot, volatility, interestRate, numberOfPath);
     const double putPrice = mc::simpleMonteCarlo(
-        putPayoff, maturity, spot, volatility, interestRate, numberOfPath);
+        putOption, spot, volatility, interestRate, numberOfPath);
 
     const mc::PayoffDoubleDigital doubleDigitalPayoff(-1.0, 1.0);
+    const mc::VanillaOption doubleDigitalOption(doubleDigitalPayoff, maturity);
     const double doubleDigitalOptionPrice = mc::simpleMonteCarlo(
-        doubleDigitalPayoff, maturity, spot, volatility, interestRate, numberOfPath);
+        doubleDigitalOption, spot, volatility, interestRate, numberOfPath);
 
     std::cout << "the price of call option: " << callPrice << std::endl;
     std::cout << "the price of put option: " << putPrice << std::endl;
