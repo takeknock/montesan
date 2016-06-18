@@ -4,7 +4,8 @@
 class PayoffTest : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(PayoffTest);
     CPPUNIT_TEST(testPayoffCall);
-    //CPPUNIT_TEST(test_diff);
+    CPPUNIT_TEST(testPayoffPut);
+    CPPUNIT_TEST(testPayoffDoubleDigital);
     //CPPUNIT_TEST(test_mul);
     CPPUNIT_TEST_SUITE_END();
 
@@ -14,6 +15,8 @@ public:
 
 private:
     void testPayoffCall();
+    void testPayoffPut();
+    void testPayoffDoubleDigital();
 
 
 };
