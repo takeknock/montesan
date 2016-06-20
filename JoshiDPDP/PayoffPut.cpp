@@ -2,14 +2,19 @@
 #include "PayoffPut.h"
 
 namespace mc {
-    PAYOFFDLL_API PayoffPut::PayoffPut(const double strike)
+    DLL_API PayoffPut::PayoffPut(const double strike)
     :_strike(strike)
     {
 
     }
 
-    PAYOFFDLL_API const double PayoffPut::operator()(const double spot) const
+    DLL_API const double PayoffPut::operator()(const double spot) const
     {
         return std::max(_strike - spot, 0.0);
+    }
+
+    DLL_API const Payoff* PayoffPut::clone() const
+    {
+        return new PayoffPut(*this);
     }
 }

@@ -4,8 +4,9 @@
 namespace mc {
     class PayoffPut : public Payoff {
     public:
-        PAYOFFDLL_API PayoffPut(const double strike);
-        virtual PAYOFFDLL_API const double operator()(const double spot) const;
+        DLL_API PayoffPut(const double strike);
+        virtual DLL_API const double operator()(const double spot) const;
+        DLL_API virtual const Payoff* clone() const;
         virtual ~PayoffPut() {};
 
     private:

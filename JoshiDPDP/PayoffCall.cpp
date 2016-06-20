@@ -2,12 +2,18 @@
 #include <algorithm>
 
 namespace mc {
-    PAYOFFDLL_API PayoffCall::PayoffCall(const double strike)
+    DLL_API PayoffCall::PayoffCall(const double strike)
     :_strike(strike)
     {}
 
-    const PAYOFFDLL_API double PayoffCall::operator()(const double spot) const
+    const DLL_API double PayoffCall::operator()(const double spot) const
     {
         return std::max(spot - _strike, 0.0);
     }
+
+    DLL_API const Payoff* PayoffCall::clone() const
+    {
+        return new PayoffCall(*this);
+    }
+
 }
