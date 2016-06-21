@@ -13,7 +13,7 @@ namespace mc {
         return std::max(_strike - spot, 0.0);
     }
 
-    DLL_API const Payoff* PayoffPut::clone() const
+    DLL_API Payoff* PayoffPut::clone() const
     {
         return new PayoffPut(*this);
     }

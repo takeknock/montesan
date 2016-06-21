@@ -18,7 +18,7 @@ namespace mc {
         return 1.0;
     }
 
-    DLL_API const Payoff* PayoffDoubleDigital::clone() const
+    DLL_API Payoff* PayoffDoubleDigital::clone() const
     {
         return new PayoffDoubleDigital(*this);
     }

@@ -7,7 +7,7 @@ namespace mc {
     public:
         DLL_API PayoffCall(const double strike);
         DLL_API virtual const double operator()(double spot) const;
-        DLL_API virtual const Payoff* clone() const;
+        DLL_API virtual Payoff* clone() const;
         virtual ~PayoffCall() {};
 
     private:

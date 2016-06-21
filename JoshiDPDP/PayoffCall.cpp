@@ -11,7 +11,7 @@ namespace mc {
         return std::max(spot - _strike, 0.0);
     }
 
-    DLL_API const Payoff* PayoffCall::clone() const
+    DLL_API Payoff* PayoffCall::clone() const
     {
         return new PayoffCall(*this);
     }

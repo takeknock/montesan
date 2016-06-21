@@ -6,7 +6,7 @@ namespace mc {
     public:
         DLL_API PayoffDoubleDigital(const double lowLevel, const double upperLevel);
         DLL_API virtual const double operator()(const double spot) const;
-        DLL_API virtual const Payoff* clone() const;
+        DLL_API virtual Payoff* clone() const;
         virtual ~PayoffDoubleDigital() {};
     private:
         const double _lowLevel;

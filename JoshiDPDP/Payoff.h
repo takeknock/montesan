@@ -13,7 +13,7 @@ namespace mc {
         //PAYOFFDLL_API Payoff(const double strike, const OptionType theOptionType);
         DLL_API Payoff() {};
         virtual const DLL_API double operator()(const double spot) const = 0;
-        virtual const DLL_API const Payoff* clone() const = 0;
+        virtual DLL_API Payoff* clone() const = 0;
         virtual ~Payoff() {};
 
     private:
