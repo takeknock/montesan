@@ -24,6 +24,18 @@ void VanillaOptionTest::testGetPayoff()
 
 }
 
+void VanillaOptionTest::testOperatorEqual()
+{
+    mc::PayoffCall payoffCall(10.0);
+    mc::PayoffCall payoffCall2(20.0);
+    mc::VanillaOption option(payoffCall, 1.0);
+    mc::VanillaOption option2(payoffCall2, 2.0);
+    option2 = option;
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(option.getMaturity(), option2.getMaturity(), 10e-7);
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(option.getPayoff(30.0), option2.getPayoff(30.0), 10e-7);
+
+}
+
 void VanillaOptionTest::tearDown()
 {
 

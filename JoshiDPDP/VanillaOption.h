@@ -8,11 +8,11 @@ namespace mc {
         DLL_API const double getMaturity() const;
         DLL_API VanillaOption& operator=(const VanillaOption& original);
         DLL_API const double getPayoff(const double spot) const;
-        ~VanillaOption();
+        DLL_API ~VanillaOption();
 
     private:
         Payoff* _payoff;
-        const double _maturity;
+        double _maturity;
     };
 
 } //namespace mc {

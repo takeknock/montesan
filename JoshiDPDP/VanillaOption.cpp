@@ -2,8 +2,10 @@
 
 namespace mc {
     DLL_API VanillaOption::VanillaOption(const Payoff& payoff, const double maturity)
-    :_payoff(payoff), _maturity(maturity)
-    {}
+    :_maturity(maturity)
+    {
+        _payoff = payoff.clone();   
+    }
     
     DLL_API const double VanillaOption::getMaturity() const
     {
@@ -12,8 +14,19 @@ namespace mc {
 
     DLL_API const double VanillaOption::getPayoff(const double spot) const
     {
-        return _payoff(spot);
+        return _payoff->operator()(spot);
     }
 
+    DLL_API VanillaOption& VanillaOption::operator= (const VanillaOption& original)
+    {
+        _maturity = original.getMaturity();
+        _payoff = original._payoff->clone();
+        return *this;
+    }
+
+    DLL_API VanillaOption::~VanillaOption()
+    {
+        delete _payoff;
+    }
 
 }
