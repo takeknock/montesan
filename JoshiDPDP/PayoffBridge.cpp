@@ -18,7 +18,7 @@ namespace mc {
 
     DLL_API PayoffBridge::~PayoffBridge()
     {
-
+        delete _payoff;
     }
 
     DLL_API PayoffBridge& PayoffBridge::operator=(const PayoffBridge& original)
