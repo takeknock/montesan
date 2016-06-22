@@ -1,17 +1,17 @@
 #pragma once
-#include "Payoff.h"
+#include "PayoffBridge.h"
 
 namespace mc {
     class VanillaOption {
     public:
-        DLL_API VanillaOption(const Payoff& payoff, const double maturity);
+        DLL_API VanillaOption(const PayoffBridge& payoff, const double maturity);
         DLL_API const double getMaturity() const;
         DLL_API VanillaOption& operator=(const VanillaOption& original);
         DLL_API const double getPayoff(const double spot) const;
         DLL_API ~VanillaOption();
 
     private:
-        Payoff* _payoff;
+        PayoffBridge _payoffBridge;
         double _maturity;
     };
 
