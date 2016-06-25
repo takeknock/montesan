@@ -16,6 +16,9 @@
 
 #include "functionsTest.h"
 
+#include "../JoshiDPDP/ParametersConstant.h"
+
+
 int main()
 {
     const double maturity = 1.0;
@@ -28,15 +31,17 @@ int main()
     const mc::PayoffPut putPayoff(strike);
     const mc::VanillaOption callOption(callPayoff, maturity);
     const mc::VanillaOption putOption(putPayoff, maturity);
+    const mc::ParametersConstant volatilityParameter(volatility);
+    const mc::ParametersConstant interestRateParameter(volatility);
     const double callPrice = mc::simpleMonteCarlo(
-        callOption, spot, volatility, interestRate, numberOfPath);
+        callOption, spot, volatilityParameter, interestRateParameter, numberOfPath);
     const double putPrice = mc::simpleMonteCarlo(
-        putOption, spot, volatility, interestRate, numberOfPath);
+        putOption, spot, volatilityParameter, interestRateParameter, numberOfPath);
 
     const mc::PayoffDoubleDigital doubleDigitalPayoff(-1.0, 1.0);
     const mc::VanillaOption doubleDigitalOption(doubleDigitalPayoff, maturity);
     const double doubleDigitalOptionPrice = mc::simpleMonteCarlo(
-        doubleDigitalOption, spot, volatility, interestRate, numberOfPath);
+        doubleDigitalOption, spot, volatilityParameter, interestRateParameter, numberOfPath);
 
     std::cout << "the price of call option: " << callPrice << std::endl;
     std::cout << "the price of put option: " << putPrice << std::endl;
