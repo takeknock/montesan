@@ -1,6 +1,7 @@
 #pragma once
 #include "Payoff.h"
 #include "VanillaOption.h"
+#include "Parameters.h"
 
 #ifdef DPDPLIBRARY_EXPORTS
 #define FUNCTIONSDLL_API __declspec(dllexport) 
@@ -11,8 +12,8 @@
 namespace mc {
     const FUNCTIONSDLL_API double simpleMonteCarlo(
         const VanillaOption& vanillaOption, 
-        const double spot, const double volatility,
-        const double interestrate, const size_t numberOfPath);
+        const double spot, const Parameters& volatility,
+        const Parameters& interestrate, const size_t numberOfPath);
 
 }//namespace mcf {
 
