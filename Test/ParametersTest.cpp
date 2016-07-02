@@ -13,7 +13,6 @@ void ParametersTest::testConstructor()
 
 void ParametersTest::testOperatorEqual()
 {
-
 }
 
 void ParametersTest::testIntegral()
@@ -23,7 +22,6 @@ void ParametersTest::testIntegral()
     mc::Parameters parameters(constantParameter);
     CPPUNIT_ASSERT_DOUBLES_EQUAL(
         10.0, parameters.Integral(1.0, 2.0), 10e-7);
-
 }
 
 void ParametersTest::testIntegralSquareTest()
@@ -33,7 +31,6 @@ void ParametersTest::testIntegralSquareTest()
     mc::Parameters parameters(constantParameter);
     CPPUNIT_ASSERT_DOUBLES_EQUAL(
         100.0, parameters.IntegralSquare(1.0, 2.0), 10e-7);
-
 }
 
 void ParametersTest::testCalculateMean()
@@ -53,12 +50,10 @@ void ParametersTest::testCalculateRootMeanSquare()
     mc::Parameters parameters(constantParameter);
     CPPUNIT_ASSERT_DOUBLES_EQUAL(
         100.0, parameters.calculateRootMeanSquare(1.0, 2.0), 10e-7);
-
 }
 
 
 
 void ParametersTest::tearDown()
 {
-
 }

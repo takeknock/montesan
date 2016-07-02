@@ -1,5 +1,3 @@
-
-
 #include "functionsTest.h"
 
 
@@ -12,11 +10,10 @@ void FunctionsTest::setUp()
 
 void FunctionsTest::testtest()
 {
-    CPPUNIT_ASSERT_EQUAL(0, 1);
+    //CPPUNIT_ASSERT_EQUAL(0, 1);
 }
 
 void FunctionsTest::tearDown()
 {
 
 }
-
