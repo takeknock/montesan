@@ -12,7 +12,8 @@ namespace mc {
     const FUNCTIONSDLL_API double simpleMonteCarlo(
         const VanillaOption& vanillaOption, 
         const double spot, const Parameters& volatility,
-        const Parameters& interestRate, const size_t numberOfPath)
+        const Parameters& interestRate, const size_t numberOfPath,
+        Statistics& gatherer)
     {
         const double maturity = vanillaOption.getMaturity();
 
@@ -37,6 +38,8 @@ namespace mc {
         const double movedSpot = spot * std::exp(interestRate.Integral(0.0, maturity) + itoCorrection);
         double thisSpot = 0.0;
 
+        const double discountFactor = std::exp(-interestRate.Integral(0.0, maturity));
+
 
         // create paths
         for (size_t i = 0; i < numberOfPath; ++i)
@@ -52,11 +55,11 @@ namespace mc {
             //    nextSpot += nextSpot * (interestRate * dt - 0.5 * volatility * volatility * std::sqrt(dt) * dist(generator));
 
             //}
+            gatherer.dumpOneResult(thisPayoff * discountFactor);
             accumulator(thisPayoff);
         }
 
         // assume interestRate is fixed.
-        const double discountFactor = std::exp(-interestRate.Integral(0.0, maturity));
         const double price = boost::accumulators::mean(accumulator) * discountFactor;
 
         return price;
