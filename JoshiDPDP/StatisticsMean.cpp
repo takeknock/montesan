@@ -18,8 +18,11 @@ namespace mc {
     DLL_API ublas::vector<ublas::vector<double> >
         StatisticsMean::getResultSoFar() const
     {
-        ublas::vector<ublas::vector<double> > b(1);
-        return b;
+        ublas::vector<ublas::vector<double> > results(1);
+
+        results[0].resize(1);
+        results[0][0] = _sum / _pathsDone;
+        return results;
     }
 
     DLL_API Statistics* StatisticsMean::clone() const
