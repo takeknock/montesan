@@ -1,7 +1,6 @@
 #include "StatisticsMean.h"
 
 namespace mc {
-    namespace ublas = boost::numeric::ublas;
 
     DLL_API StatisticsMean::StatisticsMean()
     :_sum(0.0), _pathsDone(0UL)
@@ -15,10 +14,10 @@ namespace mc {
         ++_pathsDone;
     }
 
-    DLL_API ublas::vector<ublas::vector<double> >
+    DLL_API std::vector<std::vector<double> >
         StatisticsMean::getResultSoFar() const
     {
-        ublas::vector<ublas::vector<double> > results(1);
+        std::vector<std::vector<double> > results(1);
 
         results[0].resize(1);
         results[0][0] = _sum / _pathsDone;
