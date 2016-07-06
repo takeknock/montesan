@@ -18,8 +18,7 @@ public:
 
     Wrapper(const T& inner)
     {
-        if (_dataPtr != 0)
-            delete _dataPtr;
+        _dataPtr = inner.clone();
     }
 
     Wrapper(const Wrapper<T>& original)
