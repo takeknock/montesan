@@ -15,7 +15,7 @@ namespace mc {
     }
 
     DLL_API std::vector<std::vector<double> >
-        StatisticsMean::getResultSoFar() const
+        StatisticsMean::getResultsSoFar() const
     {
         std::vector<std::vector<double> > results(1);
 

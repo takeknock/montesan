@@ -8,7 +8,7 @@ namespace mc {
     public:
         DLL_API StatisticsMean();
         DLL_API virtual void dumpOneResult(const double result);
-        DLL_API virtual std::vector<std::vector<double> > getResultSoFar() const;
+        DLL_API virtual std::vector<std::vector<double> > getResultsSoFar() const;
         DLL_API virtual Statistics* clone() const;
 
 

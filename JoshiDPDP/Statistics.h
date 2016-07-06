@@ -17,7 +17,7 @@ namespace mc {
         Statistics() {}
         
         virtual void dumpOneResult(const double result) = 0;
-        virtual std::vector<std::vector<double> > getResultSoFar() const = 0;
+        virtual std::vector<std::vector<double> > getResultsSoFar() const = 0;
         virtual Statistics* clone() const = 0;
         virtual ~Statistics(){}
 
