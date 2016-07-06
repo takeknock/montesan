@@ -14,10 +14,13 @@
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/TestRunner.h>
 
+#include <vector>
+
 #include "functionsTest.h"
 
 #include "../JoshiDPDP/ParametersConstant.h"
 #include "../JoshiDPDP/StatisticsMean.h"
+#include "../JoshiDPDP/ConvergenceTable.h"
 
 int main()
 {
@@ -36,10 +39,14 @@ int main()
     const mc::ParametersConstant volatilityParameter(volatility);
     const mc::ParametersConstant interestRateParameter(volatility);
 
-    mc::StatisticsMean gathererCall;
-    mc::StatisticsMean gathererPut;
-    mc::StatisticsMean gathererDoubleDigital;
+    mc::StatisticsMean gathererCallInner;
+    mc::ConvergenceTable gathererCall(gathererCallInner);
 
+    mc::StatisticsMean gathererPutInner;
+    mc::ConvergenceTable gathererPut(gathererPutInner);
+
+    mc::StatisticsMean gathererDoubleDigitalInner;
+    mc::ConvergenceTable gathererDoubleDigital(gathererDoubleDigitalInner);
 
     const double callPrice = mc::simpleMonteCarlo(
         callOption, spot, volatilityParameter, 
@@ -57,8 +64,8 @@ int main()
 
     std::cout << "the price of call option: " << callPrice << std::endl;
     std::cout << "the call results are " << std::endl;
-    ublas::vector <ublas::vector<double> > callResults = 
-        gathererCall.getResultSoFar();
+    std::vector <std::vector<double> > callResults = 
+        gathererCall.getResultsSoFar();
     
     for (std::size_t i = 0; i < callResults.size(); ++i) {
         for (std::size_t j = 0; j < callResults[i].size(); ++j) {
@@ -68,8 +75,8 @@ int main()
 
     std::cout << "the price of put option: " << putPrice << std::endl;
     std::cout << "the put results are " << std::endl;
-    ublas::vector <ublas::vector<double> > putResults =
-        gathererPut.getResultSoFar();
+    std::vector <std::vector<double> > putResults =
+        gathererPut.getResultsSoFar();
 
     for (std::size_t i = 0; i < putResults.size(); ++i) {
         for (std::size_t j = 0; j < putResults[i].size(); ++j) {
@@ -80,8 +87,8 @@ int main()
 
     std::cout << "the price of double digital option: " << doubleDigitalOptionPrice << std::endl;
     std::cout << "the double digital results are " << std::endl;
-    ublas::vector <ublas::vector<double> > doubleDigitalResults =
-        gathererDoubleDigital.getResultSoFar();
+    std::vector <std::vector<double> > doubleDigitalResults =
+        gathererDoubleDigital.getResultsSoFar();
 
     for (std::size_t i = 0; i < doubleDigitalResults.size(); ++i) {
         for (std::size_t j = 0; j < doubleDigitalResults[i].size(); ++j) {
