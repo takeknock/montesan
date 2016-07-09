@@ -18,7 +18,7 @@ public:
 
     Wrapper(const T& inner)
     {
-        _dataPtr = inner.clone();
+        _dataPtr = inner.clone();   
     }
 
     Wrapper(const Wrapper<T>& original)
